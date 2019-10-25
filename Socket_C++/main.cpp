@@ -27,6 +27,13 @@ void main()
 		return;
 	}
 	//Bind the ip address and port to an socket
+	sockaddr_in hint;
+	hint.sin_family = AF_INET;
+	hint.sin_port = htons(5400);
+	hint.sin_addr.S_un.S_addr = INADDR_ANY;  //could alse use inet_pton...
+
+	bind(listening, (sockaddr*)&hint, sizeof(hint));
+
 	//Tell Winsock the socket is for listening
 	//Wait for a connection
 	//Close listening socket
