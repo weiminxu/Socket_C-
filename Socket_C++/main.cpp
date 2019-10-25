@@ -20,7 +20,13 @@ void main()
 
 
 	//Create a socket
-	//Bind the socket to an ip address and port
+	SOCKET listening = socket(AF_INET, SOCK_STREAM, 0);
+	if (listening == INVALID_SOCKET) 
+	{
+		cerr << "Can not create a socket! Quitting" << endl;
+		return;
+	}
+	//Bind the ip address and port to an socket
 	//Tell Winsock the socket is for listening
 	//Wait for a connection
 	//Close listening socket
