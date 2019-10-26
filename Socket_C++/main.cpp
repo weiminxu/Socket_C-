@@ -89,6 +89,8 @@ void main()
 	}
 
 	//Close the sock
+	closesocket(clientSocket);
 
-	//Shutdown winsock
+	//Cleanup winsock
+	WSACleanup();
 }
