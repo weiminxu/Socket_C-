@@ -61,11 +61,11 @@ void main()
 	}
 
 	//Close listening socket
-
-
-
+	closesocket(listening);
 
 	//While loop:accept and echo message back to client
+
 	//Close the sock
+
 	//Shutdown winsock
 }
