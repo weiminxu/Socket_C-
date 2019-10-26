@@ -38,8 +38,33 @@ void main()
 	listen(listening, SOMAXCONN);
 
 	//Wait for a connection
+	sockaddr_in client;
+	int clientSize = sizeof(client);
+
+	SOCKET clientSocket = accept(listening, (sockaddr*)&client, &clientSize);
+	//if(clientSocket == INVALID_SOCKET)//DO SOMETHING
+
+	char host[NI_MAXHOST];     //client's remote name
+	char service[NI_MAXSERV];  //service (i.e. port) the client is connect on
+
+	ZeroMemory(host, NI_MAXHOST);
+	ZeroMemory(service, NI_MAXSERV);
+
+	if (getnameinfo((sockaddr*)&client, sizeof(client), host, NI_MAXHOST, service, NI_MAXSERV, 0) == 0)
+	{
+		cout << host << " connected on port " << service << endl;
+	}
+	else 
+	{
+		inet_ntop(AF_INET, &client.sin_addr, host, NI_MAXHOST);
+		cout << host << " connected on port " << ntohs(client.sin_port) << endl;
+	}
 
 	//Close listening socket
+
+
+
+
 	//While loop:accept and echo message back to client
 	//Close the sock
 	//Shutdown winsock
